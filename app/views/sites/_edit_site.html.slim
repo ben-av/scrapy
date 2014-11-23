@@ -1,0 +1,46 @@
+= form_for @site, role: 'form', html: {class: 'upsert_site'} do |f|
+  .form_group
+    = f.label :name
+    = f.text_field :name, class: 'form-control', required: true, autofocus: true
+  .form_group
+    = f.label :base_url
+    = f.text_field :base_url, class: 'form-control', required: true
+  .form_group
+    label for="add_rule" Site Rules:
+    p.clearfix
+      button#add_rule.btn.btn-success type="button" Add Rule
+    p.clearfix
+      div#rules_container.list-group
+        - for prop,config in parse_rules(@site) do
+          .list-group-item.rules_list
+            span.glyphicon.glyphicon-remove.pull-right.remove_site_rule aria-hidden="true" data-prop-name="#{prop}"
+            h4.list-group-item-heading = prop
+            p.list-group-item-text Rule: #{config['rule']}
+            p.list-group-item-text Attribute: #{config['attribute']}
+
+  = f.hidden_field(:rules)
+
+  br.clearfix
+  = f.submit 'Save', class: "button btn btn-primary"
+       
+.modal.fade#ruleModal tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h4.modal-title Add New Rule
+      .modal-body
+        .container-fluid
+          form#addRuleForm role="form"
+            .form-group
+              label for="propName" Property Name:
+              input#propName.form-control type="text" required="true"
+            .form-group
+              label for="propRule" Rule(CSS syntax):
+              input#propRule.form-control type="text" required="true"
+            .form-group
+              label for="propAttr" DOM Attribute:
+              input#propAttr.form-control placeholder="Leave empty for tag text" type="text" 
+            button#submitAddRule type="submit" style="display:none"
+          .modal-footer
+            button.btn.btn-default type="button" data-toggle="modal" data-target=".bs-example-modal-sm" data-dismiss="modal" Close
+            button.btn.btn-success#saveRule type="button" data-toggle="modal" data-target=".bs-example-modal-sm" Add

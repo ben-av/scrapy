@@ -27,9 +27,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'nokogiri'
+gem 'addressable'
 gem 'faraday'
 gem 'net-http-persistent'
 gem 'pry-rails', :group => :development
+gem 'slim'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

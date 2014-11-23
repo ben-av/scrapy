@@ -1,0 +1,18 @@
+table.table.sites
+  thead
+    tr
+      td Id
+      td Name
+      td Actions
+      td Base Url
+  - for site in @sites do
+    tr
+      td = site.id
+      td = site.name
+      td = site.base_url
+      td
+        a.glyphicon.glyphicon-edit.pull-left aria-hidden="true" title="edit" href="#{edit_site_path(site)}"        
+        = link_to "", site, method: 'delete', data: { confirm: "Do you want to delete #{site.name}?" }, class: "glyphicon glyphicon-remove pull-left"
+
+a#add_rule.btn.btn-success type="button" href="#{new_site_path}" New Site
+
