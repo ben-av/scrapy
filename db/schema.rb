@@ -15,11 +15,11 @@ ActiveRecord::Schema.define(version: 20141123113016) do
 
   create_table "sites", force: true do |t|
     t.string   "name"
-    t.string   "base_url"
-    t.string   "rules"
+    t.text   "base_url"
+    t.text   "rules"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "test_url"
+    t.text   "test_url"
   end
 
 end
