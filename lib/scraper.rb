@@ -29,11 +29,15 @@ class Scraper
   end
 
   def flatten_host(url)
-    url = "http://" + url if Addressable::URI.parse(url).scheme.blank?
-    host = Addressable::URI.parse(url).host
-    host = host.gsub("www.", '') if host.present?
+    if url.present?
+      url = "http://" + url if Addressable::URI.parse(url).scheme.blank?
+      host = Addressable::URI.parse(url).host
+      host = host.gsub("www.", '') if host.present?
 
-    host
+      return host
+    else
+      return ''
+    end
   end
 
   private

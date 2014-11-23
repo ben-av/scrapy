@@ -31,6 +31,7 @@ gem 'faraday'
 gem 'net-http-persistent'
 gem 'pry-rails', :group => :development
 gem 'slim'
+gem 'rspec-rails'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
