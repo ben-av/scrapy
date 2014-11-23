@@ -3,16 +3,20 @@ table.table.sites
     tr
       td Id
       td Name
-      td Actions
       td Base Url
+      td Actions
   - for site in @sites do
     tr
       td = site.id
       td = site.name
       td = site.base_url
       td
-        a.glyphicon.glyphicon-edit.pull-left aria-hidden="true" title="edit" href="#{edit_site_path(site)}"        
+        a.glyphicon.glyphicon-edit.pull-left aria-hidden="true" title="edit" href="#{edit_site_path(site)}"
         = link_to "", site, method: 'delete', data: { confirm: "Do you want to delete #{site.name}?" }, class: "glyphicon glyphicon-remove pull-left"
+        - if site.test_url.present?
+          a.glyphicon.glyphicon-play.pull-left aria-hidden="true" target="_blank" title="test" href="#{get_tester_url(site)}"
+
+
 
 a#add_rule.btn.btn-success type="button" href="#{new_site_path}" New Site
 

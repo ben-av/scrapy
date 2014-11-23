@@ -41,7 +41,7 @@ class SitesController < ApplicationController
 
   private
   def site_params
-    site_params = params.require(:site).permit(:name, :base_url, :rules)
+    site_params = params.require(:site).permit(:name, :base_url, :test_url, :rules)
     site_params[:base_url] = Scraper.instance.flatten_host(site_params[:base_url]) if site_params[:base_url]
 
     site_params
